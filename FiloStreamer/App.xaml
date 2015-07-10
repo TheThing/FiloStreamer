@@ -1,0 +1,534 @@
+﻿<Application x:Class="FiloStreamer.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <!-- Converters -->
+        <!--<irc:BoolToVisibililty x:Key="BoolToVisibililty" />
+        <irc:InvertBool x:Key="InvertBool" />
+        <irc:ValueConverterGroup x:Key="BoolInvertedToVisibility">
+            <irc:InvertBool />
+            <irc:BoolToVisibililty />
+        </irc:ValueConverterGroup>-->
+
+        <!-- Colors -->
+        <SolidColorBrush x:Key="brushText">#f1f1f1</SolidColorBrush>
+        <SolidColorBrush x:Key="brushNormal">#2d2d30</SolidColorBrush>
+        <SolidColorBrush x:Key="brushFocused">#3f3f41</SolidColorBrush>
+        <SolidColorBrush x:Key="brushHighlight">#007acc</SolidColorBrush>
+        <SolidColorBrush x:Key="brushControlBackground">#333337</SolidColorBrush>
+        <SolidColorBrush x:Key="brushControlInactiveBorder">#3f3f3f</SolidColorBrush>
+        <SolidColorBrush x:Key="brushControlInactiveText">#999999</SolidColorBrush>
+        <SolidColorBrush x:Key="brushControlActive">#686868</SolidColorBrush>
+        <SolidColorBrush x:Key="brushControlActiveBorder">#9e9e9e</SolidColorBrush>
+        <Color x:Key="colorText">#f1f1f1</Color>
+        <Color x:Key="colorNormal">#2d2d30</Color>
+        <Color x:Key="colorFocused">#3f3f41</Color>
+        <Color x:Key="colorHover">#1c97ea</Color>
+        <Color x:Key="colorHighlight">#007acc</Color>
+        <Color x:Key="colorControlBackground">#333337</Color>
+        <Color x:Key="colorControlInactiveBorder">#3f3f3f</Color>
+        <Color x:Key="colorControlInactiveText">#999999</Color>
+        <Color x:Key="colorControlActive">#686868</Color>
+        <Color x:Key="colorControlActiveBorder">#9e9e9e</Color>
+
+        <!-- Styles -->
+        <Style x:Key="ScrollBarLineButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border x:Name="Border" Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="pathFill"
+                                                Storyboard.TargetProperty="Color">
+                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource colorHover}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="pathFill"
+                                                Storyboard.TargetProperty="Color">
+                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource colorHighlight}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Path x:Name="Arrow"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Data="{Binding Content, 
+                                  RelativeSource={RelativeSource TemplatedParent}}">
+                                <Path.Fill>
+                                    <SolidColorBrush x:Name="pathFill" Color="{StaticResource colorControlActiveBorder}" />
+                                </Path.Fill>
+                            </Path>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ScrollBarPageButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border Background="Transparent" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Border>
+                            <Border Margin="2" Background="{TemplateBinding Background}">
+                                <Border>
+                                    <Border.Background>
+                                        <SolidColorBrush x:Name="thumbFront" Color="Transparent" />
+                                    </Border.Background>
+                                </Border>
+                            </Border>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="thumbFront"
+                                                Storyboard.TargetProperty="Color">
+                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource colorControlActiveBorder}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="thumbFront"
+                                                Storyboard.TargetProperty="Color">
+                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource colorText}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MaxHeight="16" />
+                    <RowDefinition Height="0.00001*" />
+                    <RowDefinition MaxHeight="16" />
+                </Grid.RowDefinitions>
+                <Border Grid.RowSpan="3" Background="{StaticResource brushFocused}" />
+                <RepeatButton Grid.Row="0"
+                              Style="{StaticResource ScrollBarLineButton}"
+                              Height="18"
+                              Command="ScrollBar.LineUpCommand"
+                              Content="M 0 5 L 10 5 L 5 0 Z" />
+                <Track x:Name="PART_Track"
+                       Grid.Row="1"
+                       IsDirectionReversed="true">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}"
+                                      Command="ScrollBar.PageUpCommand" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Margin="2 0"
+                               Style="{StaticResource ScrollBarThumb}"
+                               Background="{StaticResource brushControlActive}">
+                        </Thumb>
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}"
+                                      Command="ScrollBar.PageDownCommand" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+                <RepeatButton Grid.Row="3"
+                              Style="{StaticResource ScrollBarLineButton}"
+                              Height="18"
+                              Command="ScrollBar.LineDownCommand"
+                              Content="M 0 0 L 5 5 L 10 0 Z" />
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="HorizontalScrollBar"
+                 TargetType="{x:Type ScrollBar}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="18" />
+                    <ColumnDefinition Width="0.00001*" />
+                    <ColumnDefinition MaxWidth="18" />
+                </Grid.ColumnDefinitions>
+                <Border Grid.ColumnSpan="3" Background="{StaticResource brushFocused}" />
+                <RepeatButton Grid.Column="0"
+                              Style="{StaticResource ScrollBarLineButton}"
+                              Width="18"
+                              Command="ScrollBar.LineLeftCommand"
+                              Content="M 4 0 L 4 8 L 0 4 Z" />
+                <Track x:Name="PART_Track"
+                       Grid.Column="1"
+                       IsDirectionReversed="False">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageLeftCommand" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Margin="0 2" Style="{StaticResource ScrollBarThumb}" Background="{StaticResource brushControlActive}">
+                        </Thumb>
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}"
+                      Command="ScrollBar.PageRightCommand" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+                <RepeatButton Grid.Column="3"
+                              Style="{StaticResource ScrollBarLineButton}"
+                              Width="18"
+                              Command="ScrollBar.LineRightCommand"
+                              Content="M 0 0 L 4 4 L 0 8 Z" />
+            </Grid>
+        </ControlTemplate>
+
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Width" Value="Auto" />
+                    <Setter Property="Height" Value="18" />
+                    <Setter Property="Template" Value="{StaticResource HorizontalScrollBar}" />
+                </Trigger>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Width" Value="18" />
+                    <Setter Property="Height" Value="Auto" />
+                    <Setter Property="Template" Value="{StaticResource VerticalScrollBar}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ScrollViewer">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                        <Grid Background="Transparent" DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" MouseDown="Window_MouseDown" MouseMove="Window_MouseMove" MouseUp="Window_MouseUp">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <ScrollContentPresenter DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" MouseDown="Window_MouseDown" MouseMove="Window_MouseMove" MouseUp="Window_MouseUp" />
+                            <ScrollBar x:Name="PART_VerticalScrollBar"
+                                       Grid.Column="1"
+                                       Value="{TemplateBinding VerticalOffset}"
+                                       Maximum="{TemplateBinding ScrollableHeight}"
+                                       ViewportSize="{TemplateBinding ViewportHeight}"
+                                       Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                            <ScrollBar x:Name="PART_HorizontalScrollBar"
+                                       Orientation="Horizontal"
+                                       Grid.Row="1"
+                                       Value="{TemplateBinding HorizontalOffset}"
+                                       Maximum="{TemplateBinding ScrollableWidth}"
+                                       ViewportSize="{TemplateBinding ViewportWidth}"
+                                       Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+                            <Border Grid.Row="1" Grid.Column="1" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}">
+                                <Border
+                                    Background="{StaticResource brushFocused}"
+                                    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="borderMain" BorderThickness="1" SnapsToDevicePixels="True">
+                            <Border.BorderBrush>
+                                <SolidColorBrush x:Name="borderBorderBrush" Color="{StaticResource colorFocused}" />
+                            </Border.BorderBrush>
+                            <Border.Background>
+                                <SolidColorBrush x:Name="borderBackgroundBrush" Color="Transparent" />
+                            </Border.Background>
+                            <TextBlock Margin="{Binding Path=Padding, RelativeSource={RelativeSource TemplatedParent}}" TextAlignment="Center" VerticalAlignment="Center" Foreground="#D3D3D3">
+                                <ContentPresenter></ContentPresenter>
+                            </TextBlock>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="borderBackgroundBrush" Storyboard.TargetProperty="Color">
+                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource colorFocused}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="borderBackgroundBrush" Storyboard.TargetProperty="Color">
+                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource colorHighlight}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="borderBorderBrush" Storyboard.TargetProperty="Color">
+                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource colorHighlight}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonFlat" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="borderMain">
+                            <Border.Background>
+                                <SolidColorBrush x:Name="borderBackgroundBrush" Color="Transparent" />
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="borderBackgroundBrush" Storyboard.TargetProperty="Color">
+                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource colorFocused}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="borderBackgroundBrush" Storyboard.TargetProperty="Color">
+                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource colorHighlight}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="FlatWindow" TargetType="Window">
+            <Setter Property="Background" Value="{StaticResource brushNormal}" />
+            <Setter Property="BorderBrush" Value="{StaticResource brushFocused}" />
+            <Setter Property="WindowStyle" Value="None" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="AllowsTransparency" Value="True" />
+            <Setter Property="Icon" Value="program.ico" />
+            <Setter Property="ResizeMode" Value="CanResizeWithGrip" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Window">
+                        <Border
+                            BorderThickness="{Binding Path=BorderThickness, RelativeSource={RelativeSource TemplatedParent}}"
+                            BorderBrush="{Binding Path=BorderBrush, RelativeSource={RelativeSource TemplatedParent}}"
+                            Background="{Binding Path=Background, RelativeSource={RelativeSource TemplatedParent}}"
+                            DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                            MouseDown="Window_MouseDown"
+                            MouseMove="Window_MouseMove"
+                            MouseUp="Window_MouseUp">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="24" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <Image Width="24" Height="24" Source="icon_24px.gif" />
+                                    <TextBlock Margin="8 0" Text="{Binding Path=Title, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" VerticalAlignment="Center" Foreground="{StaticResource brushText}" FontFamily="Calibri" FontSize="14" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button Style="{StaticResource ButtonFlat}" Width="24" Height="24" Click="ButtonMinimize_Click"
+                                            DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+                                        <Path Stroke="{StaticResource brushText}" StrokeThickness="2px" Data="M 0 8 l 10 0" />
+                                    </Button>
+                                    <Button Style="{StaticResource ButtonFlat}" Width="24" Height="24" Click="ButtonClose_Click"
+                                            DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+                                        <Path Stroke="{StaticResource brushText}" StrokeThickness="1px" Data="M 0 0 l 9 9 M 9 0 l -9 9" />
+                                    </Button>
+                                </StackPanel>
+                                <AdornerDecorator Grid.Row="1">
+                                    <ContentPresenter />
+                                </AdornerDecorator>
+                                <ResizeGrip x:Name="WindowResizeGrip"
+                                            Grid.Row="1"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            Visibility="Collapsed"
+                                            IsTabStop="false" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="ResizeMode"
+                                     Value="CanResizeWithGrip">
+                                <Setter TargetName="WindowResizeGrip"
+                                        Property="Visibility"
+                                        Value="Visible" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="CheckBox">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
+                    <Setter Property="BorderBrush" Value="{StaticResource brushHighlight}" />
+                </DataTrigger>
+            </Style.Triggers>
+            <Setter Property="Background" Value="{StaticResource brushControlBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource brushControlInactiveBorder}" />
+            <Setter Property="Foreground" Value="{StaticResource brushText}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Border x:Name="borderBullet" BorderThickness="1"
+                                            Width="{Binding Path=Height, RelativeSource={RelativeSource TemplatedParent}}"
+                                            Height="{Binding Path=Height, RelativeSource={RelativeSource TemplatedParent}}"
+                                            Background="{Binding Path=Background, RelativeSource={RelativeSource TemplatedParent}}"
+                                            BorderBrush="{Binding Path=BorderBrush, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <Grid>
+                                        <Path x:Name="CheckMark"
+                                                Visibility="Collapsed"
+                                                Width="7"
+                                                Height="7"
+                                                StrokeThickness="2"
+                                                Stroke="{StaticResource brushControlActive}"
+                                                Data="M 0 0 L 7 7 M 0 7 L 7 0"/>
+                                    </Grid>
+                                </Border>
+                            </BulletDecorator.Bullet>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CheckStates">
+                                    <VisualState x:Name="Checked">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames
+                                                    Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                    Storyboard.TargetName="CheckMark">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unchecked" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter Margin="6 0 0 0" VerticalAlignment="Center" ContentSource="Content" RecognizesAccessKey="True" />
+                        </BulletDecorator>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource brushText}" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource brushText}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsFocused, RelativeSource={RelativeSource Self}}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource brushText}" />
+                </DataTrigger>
+            </Style.Triggers>
+            <Setter Property="Background" Value="{StaticResource brushControlBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource brushControlInactiveBorder}" />
+            <Setter Property="Foreground" Value="{StaticResource brushControlInactiveText}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="ErrorAnimation" Storyboard.TargetName="borderColor" Storyboard.TargetProperty="Color">
+                                <ColorAnimation From="DarkRed" Duration="0:0:1" />
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <Border x:Name="borderMain" BorderThickness="1"
+                                Background="{Binding Path=Background, RelativeSource={RelativeSource TemplatedParent}}">
+                            <Border.BorderBrush>
+                                <SolidColorBrush x:Name="borderColor" Color="{StaticResource colorControlInactiveBorder}" />
+                            </Border.BorderBrush>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0" Padding="0" />
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Color" Storyboard.TargetName="borderColor">
+                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource colorHighlight}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Color" Storyboard.TargetName="borderColor">
+                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource colorHighlight}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="BorderBrush" Value="{StaticResource brushFocused}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0"
+                                BorderThickness="1 1 1 0"
+                                CornerRadius="2,2,0,0" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderBrush}">
+                                <Border Margin="8 -10 4 0" HorizontalAlignment="Left" Padding="4 0 12 0" Background="{Binding Path=Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+                                    <TextBlock Foreground="{StaticResource brushText}">
+                                        <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" />
+                                    </TextBlock>
+                                </Border>
+                            </Border>
+                            <Border Grid.Row="1" BorderThickness="1,0,1,1" CornerRadius="0,0,2,2" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderBrush}">
+                                <ContentPresenter Margin="4" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>

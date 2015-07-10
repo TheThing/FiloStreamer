@@ -1,0 +1,16 @@
+﻿<Window x:Class="FiloStreamer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Vlc="clr-namespace:Vlc.DotNet.Wpf;assembly=Vlc.DotNet.Wpf"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.Background>
+            <VisualBrush Stretch="Uniform">
+                <VisualBrush.Visual>
+                    <Image Source="{Binding ElementName=vlcControl, Path=VideoSource}" />
+                </VisualBrush.Visual>
+            </VisualBrush >
+        </Grid.Background>
+        <Vlc:VlcControl x:Name="vlcControl" />
+    </Grid>
+</Window>
