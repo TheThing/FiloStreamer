@@ -1,15 +1,16 @@
 ﻿<Application x:Class="FiloStreamer.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:filo="clr-namespace:FiloStreamer"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <!-- Converters -->
-        <!--<irc:BoolToVisibililty x:Key="BoolToVisibililty" />
-        <irc:InvertBool x:Key="InvertBool" />
-        <irc:ValueConverterGroup x:Key="BoolInvertedToVisibility">
-            <irc:InvertBool />
-            <irc:BoolToVisibililty />
-        </irc:ValueConverterGroup>-->
+        <filo:BoolToVisibililty x:Key="BoolToVisibililty" />
+        <filo:InvertBool x:Key="InvertBool" />
+        <filo:ValueConverterGroup x:Key="BoolInvertedToVisibility">
+            <filo:InvertBool />
+            <filo:BoolToVisibililty />
+        </filo:ValueConverterGroup>
 
         <!-- Colors -->
         <SolidColorBrush x:Key="brushText">#f1f1f1</SolidColorBrush>
@@ -344,8 +345,8 @@
             <Setter Property="BorderBrush" Value="{StaticResource brushFocused}" />
             <Setter Property="WindowStyle" Value="None" />
             <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="AllowsTransparency" Value="True" />
-            <Setter Property="Icon" Value="program.ico" />
+            <!--<Setter Property="AllowsTransparency" Value="True" />-->
+            <Setter Property="Icon" Value="logo.ico" />
             <Setter Property="ResizeMode" Value="CanResizeWithGrip" />
             <Setter Property="Template">
                 <Setter.Value>
