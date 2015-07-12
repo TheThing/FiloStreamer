@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:filo="clr-namespace:FiloStreamer"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Loader.xaml">
     <Application.Resources>
         <!-- Converters -->
         <filo:BoolToVisibililty x:Key="BoolToVisibililty" />
@@ -345,7 +345,7 @@
             <Setter Property="BorderBrush" Value="{StaticResource brushFocused}" />
             <Setter Property="WindowStyle" Value="None" />
             <Setter Property="BorderThickness" Value="1" />
-            <!--<Setter Property="AllowsTransparency" Value="True" />-->
+            <Setter Property="AllowsTransparency" Value="True" />
             <Setter Property="Icon" Value="logo.ico" />
             <Setter Property="ResizeMode" Value="CanResizeWithGrip" />
             <Setter Property="Template">
@@ -499,6 +499,25 @@
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="FlatTextbox" TargetType="TextBox">
+            <Setter Property="Background" Value="{StaticResource brushControlBackground}" />
+            <Setter Property="BorderBrush" Value="{StaticResource brushControlInactiveBorder}" />
+            <Setter Property="Foreground" Value="{StaticResource brushControlInactiveText}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="ErrorAnimation" Storyboard.TargetName="borderColor" Storyboard.TargetProperty="Color">
+                                <ColorAnimation From="DarkRed" Duration="0:0:1" />
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <Border x:Name="borderMain">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0" Padding="0" />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>

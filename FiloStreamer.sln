@@ -5,6 +5,12 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiloStreamer", "FiloStreamer\FiloStreamer.csproj", "{0AB5B685-5458-47D4-8DC5-B58E73F50779}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xZune.Vlc", "xZune.Vlc\xZune.Vlc.csproj", "{2914318D-F479-4469-B7D0-C9CDE386ED1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xZune.Vlc.Wpf", "xZune.Vlc.Wpf\xZune.Vlc.Wpf.csproj", "{691823CE-471F-4A08-8A79-9156D9905F5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xZune.Vlc.Wpf.Sample", "xZune.Vlc.Wpf.Sample\xZune.Vlc.Wpf.Sample.csproj", "{5E902A4D-5268-4DD4-B24E-0335B4157A3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{0AB5B685-5458-47D4-8DC5-B58E73F50779}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AB5B685-5458-47D4-8DC5-B58E73F50779}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AB5B685-5458-47D4-8DC5-B58E73F50779}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2914318D-F479-4469-B7D0-C9CDE386ED1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2914318D-F479-4469-B7D0-C9CDE386ED1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2914318D-F479-4469-B7D0-C9CDE386ED1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2914318D-F479-4469-B7D0-C9CDE386ED1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{691823CE-471F-4A08-8A79-9156D9905F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{691823CE-471F-4A08-8A79-9156D9905F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{691823CE-471F-4A08-8A79-9156D9905F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{691823CE-471F-4A08-8A79-9156D9905F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E902A4D-5268-4DD4-B24E-0335B4157A3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E902A4D-5268-4DD4-B24E-0335B4157A3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E902A4D-5268-4DD4-B24E-0335B4157A3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E902A4D-5268-4DD4-B24E-0335B4157A3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

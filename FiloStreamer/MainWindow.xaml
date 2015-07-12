@@ -1,8 +1,8 @@
 ﻿<Window x:Class="FiloStreamer.MainWindow"
+        Style="{StaticResource FlatWindow}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Vlc="clr-namespace:FiloStreamer.Controls"
-        Closing="Window_Closing"
+        xmlns:vlc="clr-namespace:xZune.Vlc.Wpf;assembly=xZune.Vlc.Wpf"
         Background="{StaticResource brushNormal}"
         Icon="logo.ico"
         Title="MainWindow" Height="350" Width="525">
@@ -11,7 +11,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Vlc:VlcControl x:Name="vlcControl" Margin="0 0 0 8" />
+        <vlc:VlcPlayer x:Name="vlcPlayer" Margin="0 0 0 8" />
         <!--<Border>
             <Vlc:VlcControl x:Name="vlcControl" Margin="0 0 0 8" />
         </Border>-->
