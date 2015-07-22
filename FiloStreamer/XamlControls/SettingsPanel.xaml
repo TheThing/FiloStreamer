@@ -6,9 +6,11 @@
              xmlns:local="clr-namespace:FiloStreamer"
              xmlns:Properties="clr-namespace:FiloStreamer.Properties"
              mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="497">
+             d:DesignHeight="300" d:DesignWidth="497">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
             <RowDefinition Height="32" />
@@ -130,6 +132,22 @@
                  Style="{StaticResource FlatTextbox}"
                  Text="{Binding networkLocal, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
                  Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolInvertedToVisibility}}" />
-        <CheckBox x:Name="checkboxAdvanced" Style="{StaticResource FlatCheckBox}" Grid.Row="6" Grid.ColumnSpan="2" Margin="6" Height="16" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsChecked="{Binding settingsAdvanced, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}">Advanced Settings</CheckBox>
+        
+        <!-- Folder -->
+        <Image Grid.Row="6" Grid.RowSpan="2" Margin="0 4 0 0" HorizontalAlignment="Left" Source="../Resources/Folder-Movies-icon.png" Stretch="Fill" VerticalAlignment="Top" Width="64"  Height="64"/>
+        <TextBlock Grid.Row="6" Grid.RowSpan="2" Grid.Column="1" Margin="6 2 10 2" VerticalAlignment="Center" Text="Folder:"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolInvertedToVisibility}}" />
+        <TextBox Grid.Row="6" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="1 0 6 0"
+                 Style="{StaticResource FlatTextbox}"
+                 Text="{Binding settingsRecordingFolder, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                 Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolInvertedToVisibility}}" />
+        <TextBlock Grid.Row="6" Grid.Column="1" Margin="6 2" VerticalAlignment="Bottom" Text="Folder:"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+        <TextBox Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" Margin="0 0 6 0"
+                 Text="{Binding settingsRecordingFolder, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                 Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+        <TextBlock Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" Margin="2 4" VerticalAlignment="Top" Text="Location to store the recordings into"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+        <CheckBox x:Name="checkboxAdvanced" Style="{StaticResource FlatCheckBox}" Grid.Row="8" Grid.ColumnSpan="2" Margin="6" Height="16" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsChecked="{Binding settingsAdvanced, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}">Advanced Settings</CheckBox>
     </Grid>
 </UserControl>

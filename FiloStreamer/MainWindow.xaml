@@ -98,7 +98,10 @@
                 </GroupBox>
                 <GroupBox x:Name="groupBoxRecord" Grid.Column="2" Margin="4" Style="{DynamicResource GroupBoxSlick}">
                     <GroupBox.Header>
-                        <TextBlock Text="Record" Foreground="#777777" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Record " Foreground="#777777" />
+                            <TextBlock Text="{Binding Path=File}" Foreground="#777777" />
+                        </StackPanel>
                     </GroupBox.Header>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -125,14 +128,11 @@
                 </GroupBox>
             </Grid>
             <Grid>
-                <GroupBox Margin="4,12,4,0" FocusManager.IsFocusScope="True" Style="{DynamicResource GroupBoxSlick}" Visibility="{Binding Path=IsLive, Converter={StaticResource BoolInvertedToVisibility}}">
+                <GroupBox Margin="4,12,4,0" VerticalAlignment="Top" MaxWidth="715" Height="350" Style="{DynamicResource GroupBoxSlick}" Visibility="{Binding Path=IsLive, Converter={StaticResource BoolInvertedToVisibility}}">
                     <GroupBox.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <Image Margin="0 1 4 0" Source="Resources/cog-icon.png" Stretch="Fill" Width="16" Height="16" />
-                            <TextBlock><Run Text="Settings"/></TextBlock>
-                        </StackPanel>
+                        <TextBlock Foreground="#777777" Text="Settings" />
                     </GroupBox.Header>
-                    <controls:SettingsPanel Margin="0,0.56" d:LayoutOverrides="Height"/>
+                    <controls:SettingsPanel Margin="8" d:LayoutOverrides="Height"/>
                 </GroupBox>
                 <vlc:VlcPlayer x:Name="vlcPlayer" Margin="4"
                                Visibility="{Binding Path=IsLive, Converter={StaticResource BoolToVisibililty}}" VideoSourceChanged="vlcPlayer_VideoSourceChanged" />

@@ -158,6 +158,7 @@
     <Resource Include="Resources\Music-Library-icon.png" />
     <Resource Include="Resources\movie-icon.png" />
     <Resource Include="Resources\web-icon.png" />
+    <Resource Include="Resources\Folder-Movies-icon.png" />
     <Content Include="vlclib\libvlc.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -238,5 +238,17 @@ namespace FiloStreamer.Properties {
                 this["settingsAdvanced"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string settingsRecordingFolder {
+            get {
+                return ((string)(this["settingsRecordingFolder"]));
+            }
+            set {
+                this["settingsRecordingFolder"] = value;
+            }
+        }
     }
 }
