@@ -23,4 +23,5 @@ I'm hoping to expand the features in the future to make [Adobe Flash Media Live 
 
 ## License
 
-NFP API code and all code within this project is licensed under the terms of the WTFPL, see the included LICENSE file.
+All code within Filostreamer project is licensed under the terms of the WTFPL, see the included LICENSE file.  
+xZune and all code in the xZune projects are also licensed under the terms of WTFPL, see the [LICENSE](https://github.com/higankanshi/xZune.Vlc/blob/master/LICENSE) file over at [xZune.vlc project](https://github.com/higankanshi/xZune.Vlc).
