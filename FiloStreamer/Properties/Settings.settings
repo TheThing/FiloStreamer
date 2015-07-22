@@ -5,5 +5,56 @@
     <Setting Name="ffmpeg" Type="System.String" Scope="User">
       <Value Profile="(Default)">ffmpeg.exe</Value>
     </Setting>
+    <Setting Name="device" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="deviceMode" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="videoPreset" Type="System.String" Scope="User">
+      <Value Profile="(Default)">superfast</Value>
+    </Setting>
+    <Setting Name="videoBitrate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">20000</Value>
+    </Setting>
+    <Setting Name="videoExtra" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-pix_fmt yuv420p</Value>
+    </Setting>
+    <Setting Name="audioCodec" Type="System.String" Scope="User">
+      <Value Profile="(Default)">libmp3lame</Value>
+    </Setting>
+    <Setting Name="audioBitrate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">320</Value>
+    </Setting>
+    <Setting Name="audioExtra" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-q:a 0</Value>
+    </Setting>
+    <Setting Name="networkLocal" Type="System.String" Scope="User">
+      <Value Profile="(Default)">239.0.0.1:7777</Value>
+    </Setting>
+    <Setting Name="networkStream" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="loaderWidth" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="loaderHeight" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">150</Value>
+    </Setting>
+    <Setting Name="mainWindowWidth" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">750</Value>
+    </Setting>
+    <Setting Name="mainWindowHeight" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="logWindowWidth" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">600</Value>
+    </Setting>
+    <Setting Name="logWindowHeight" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">400</Value>
+    </Setting>
+    <Setting Name="settingsAdvanced" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

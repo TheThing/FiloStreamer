@@ -39,8 +39,6 @@ namespace FiloStreamer
             Console.SetOut(LogWriter.CurrentWriter);
             LogWriter.CurrentWriter.List.CollectionChanged += List_CollectionChanged;
 
-            itemsList.ItemsSource = LogWriter.CurrentWriter.List;
-
             _worker.WorkerReportsProgress = true;
             _worker.DoWork += _worker_DoWork;
             _worker.RunWorkerCompleted += _worker_RunWorkerCompleted;
@@ -50,8 +48,13 @@ namespace FiloStreamer
 
         private void List_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            string line = e.NewItems[e.NewItems.Count - 1] as string;
-            textboxLastLogLine.Text = line;
+            if (e.NewItems != null)
+            {
+                string line = e.NewItems[e.NewItems.Count - 1] as string;
+                textboxLastLogLine.Text = line;
+            }
+            else
+                textboxLastLogLine.Text = "";
         }
 
         private void _worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -59,14 +62,14 @@ namespace FiloStreamer
             loadingControl.ContentText = e.UserState.ToString();
         }
 
-        private async void _worker_DoWork(object sender, DoWorkEventArgs e)
+        private void _worker_DoWork(object sender, DoWorkEventArgs e)
         {
             _worker.ReportProgress(0, "1/3\nInitializing");
-            await Manager.Init();
+            Manager.Init();
             _worker.ReportProgress(0, "2/3\nDevices");
-            await Manager.LoadDevices();
+            Manager.LoadDevices();
             _worker.ReportProgress(0, "3/3\nModes");
-            await Manager.LoadDeviceModes();
+            Manager.LoadDeviceModes();
         }
 
         private void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -81,13 +84,13 @@ namespace FiloStreamer
             if (_expanded)
             {
                 this.ResizeMode = ResizeMode.CanResizeWithGrip;
-                scroller.Visibility = Visibility.Visible;
-                this.Height = 150 + 100;
+                scrollViewer.Visibility = Visibility.Visible;
+                this.Height = Properties.Settings.Default.loaderHeight;
             }
             else
             {
                 this.ResizeMode = ResizeMode.NoResize;
-                scroller.Visibility = Visibility.Collapsed;
+                scrollViewer.Visibility = Visibility.Collapsed;
                 this.Height = 150;
             }
         }
@@ -95,6 +98,13 @@ namespace FiloStreamer
         private void ButtonExpand_Click(object sender, RoutedEventArgs e)
         {
             Expand(!_expanded);
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            if (_expanded)
+                Properties.Settings.Default.loaderHeight = this.Height;
+            Properties.Settings.Default.Save();
         }
     }
 }

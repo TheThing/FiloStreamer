@@ -1,0 +1,17 @@
+﻿<Window x:Class="FiloStreamer.LogWindow"
+        xmlns:controls="clr-namespace:FiloStreamer.XamlControls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:properties="clr-namespace:FiloStreamer.Properties"
+        xmlns:local="clr-namespace:FiloStreamer"
+        mc:Ignorable="d"
+        Style="{StaticResource FlatWindow}"
+        Title="Logs" 
+        Height="{Binding logWindowHeight, Mode=TwoWay, Source={x:Static properties:Settings.Default}}"
+        Width="{Binding logWindowWidth, Mode=TwoWay, Source={x:Static properties:Settings.Default}}">
+    <Grid>
+        <controls:LogScrollViewer />
+    </Grid>
+</Window>

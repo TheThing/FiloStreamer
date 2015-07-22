@@ -1,0 +1,135 @@
+﻿<UserControl x:Class="FiloStreamer.XamlControls.SettingsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FiloStreamer"
+             xmlns:Properties="clr-namespace:FiloStreamer.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="497">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Video -->
+        <Image Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Left" Source="../Resources/movie-icon.png" Stretch="Fill" VerticalAlignment="Top" Width="64"  Height="64"/>
+        <TextBlock Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Margin="6 4" VerticalAlignment="Center" Text="Bitrate:"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolInvertedToVisibility}}" />
+        <ComboBox Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Margin="0 0 6 0" VerticalAlignment="Center" IsEditable="True"
+                  Text="{Binding videoBitrate, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                  Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolInvertedToVisibility}}">
+            <ComboBoxItem Content="30000"/>
+            <ComboBoxItem Content="25000"/>
+            <ComboBoxItem Content="20000"/>
+            <ComboBoxItem Content="15000"/>
+            <ComboBoxItem Content="10000"/>
+        </ComboBox>
+        <TextBlock Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Margin="6 2 6 4" HorizontalAlignment="Right" VerticalAlignment="Center" Text="kbps"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolInvertedToVisibility}}" />
+        <TextBlock Grid.Row="0" Grid.Column="1" Margin="6 4" VerticalAlignment="Bottom" Text="Preset:"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+        <ComboBox Grid.Row="0" Grid.Column="2" Margin="0 0 6 2" VerticalAlignment="Bottom" IsEditable="True"
+                  Text="{Binding videoPreset, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                  Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}">
+            <ComboBoxItem Content="ultrafast"/>
+            <ComboBoxItem Content="superfast"/>
+            <ComboBoxItem Content="veryfast"/>
+            <ComboBoxItem Content="faster"/>
+            <ComboBoxItem Content="fast"/>
+            <ComboBoxItem Content="medium"/>
+            <ComboBoxItem Content="slow"/>
+        </ComboBox>
+        <TextBlock Grid.Row="0" Grid.Column="3" Margin="6 4" VerticalAlignment="Bottom" Text="Bitrate:"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+        <ComboBox Grid.Row="0" Grid.Column="4" Margin="0 0 35 2" VerticalAlignment="Bottom" IsEditable="True"
+                  Text="{Binding videoBitrate, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                  Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}">
+            <ComboBoxItem Content="30000"/>
+            <ComboBoxItem Content="25000"/>
+            <ComboBoxItem Content="20000"/>
+            <ComboBoxItem Content="15000"/>
+            <ComboBoxItem Content="10000"/>
+        </ComboBox>
+        <TextBlock Grid.Row="0" Grid.Column="4" Margin="6 4" HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="kbps"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Margin="6,4,6,0" VerticalAlignment="Top" Text="Extra:"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+        <TextBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="0,2,35,0"
+                 Text="{Binding videoExtra, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                 Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+
+        <!-- Audio -->
+        <Image Grid.Row="2" Grid.RowSpan="2" HorizontalAlignment="Left" Source="../Resources/Music-Library-icon.png" Stretch="Fill" VerticalAlignment="Top" Width="64"  Height="64"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Margin="6 0" VerticalAlignment="Center" Text="Bitrate:"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolInvertedToVisibility}}" />
+        <ComboBox Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Margin="0 0 6 0" VerticalAlignment="Center" IsEditable="True"
+                  Text="{Binding audioBitrate, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                  Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolInvertedToVisibility}}">
+            <ComboBoxItem Content="320"/>
+            <ComboBoxItem Content="256"/>
+            <ComboBoxItem Content="192"/>
+            <ComboBoxItem Content="128"/>
+        </ComboBox>
+        <TextBlock Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" Margin="6 2 6 4" HorizontalAlignment="Right" VerticalAlignment="Center" Text="kbps"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolInvertedToVisibility}}" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Margin="6 4" VerticalAlignment="Bottom" Text="Codec:"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+        <ComboBox Grid.Row="2" Grid.Column="2" Margin="0 0 6 2" VerticalAlignment="Bottom" IsEditable="True"
+                  Text="{Binding audioCodec, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                  Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}">
+            <ComboBoxItem Content="aac"/>
+            <ComboBoxItem Content="ac3"/>
+            <ComboBoxItem Content="libfaac"/>
+            <ComboBoxItem Content="flac"/>
+            <ComboBoxItem Content="libfdk_aac"/>
+            <ComboBoxItem Content="libmp3lame"/>
+        </ComboBox>
+        <TextBlock Grid.Row="2" Grid.Column="3" Margin="6 2 6 4" VerticalAlignment="Bottom" Text="Bitrate:"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+        <ComboBox Grid.Row="2" Grid.Column="4" Margin="0 0 35 2" VerticalAlignment="Bottom" IsEditable="True"
+                  Text="{Binding audioBitrate, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                  Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}">
+            <ComboBoxItem Content="320"/>
+            <ComboBoxItem Content="256"/>
+            <ComboBoxItem Content="192"/>
+            <ComboBoxItem Content="128"/>
+        </ComboBox>
+        <TextBlock Grid.Row="2" Grid.Column="4" Margin="6 2 6 4" HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="kbps"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Margin="6 4" VerticalAlignment="Top" Text="Extra:"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+        <TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Top" Margin="0,2,35,0"
+                 Text="{Binding audioExtra, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                 Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+
+        <!-- Network -->
+        <Image Grid.Row="4" Grid.RowSpan="2" Margin="0 4 0 0" HorizontalAlignment="Left" Source="../Resources/web-icon.png" Stretch="Fill" VerticalAlignment="Top" Width="64"  Height="64"/>
+        <TextBlock Grid.Row="4" Grid.RowSpan="2" Grid.Column="1" Margin="6 2" VerticalAlignment="Center" Text="Local:"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+        <TextBlock Grid.Row="4" Grid.RowSpan="2" Grid.Column="1" Margin="6 2 10 2" VerticalAlignment="Center" Text="Local:"
+                   Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolInvertedToVisibility}}" />
+        <TextBox Grid.Row="4" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="0 0 6 0"
+                 Text="{Binding networkLocal, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                 Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolToVisibililty}}" />
+        <TextBox Grid.Row="4" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="1 0 6 0"
+                 Style="{StaticResource FlatTextbox}"
+                 Text="{Binding networkLocal, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+                 Visibility="{Binding Path=IsChecked, ElementName=checkboxAdvanced, Converter={StaticResource BoolInvertedToVisibility}}" />
+        <CheckBox x:Name="checkboxAdvanced" Style="{StaticResource FlatCheckBox}" Grid.Row="6" Grid.ColumnSpan="2" Margin="6" Height="16" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsChecked="{Binding settingsAdvanced, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}">Advanced Settings</CheckBox>
+    </Grid>
+</UserControl>

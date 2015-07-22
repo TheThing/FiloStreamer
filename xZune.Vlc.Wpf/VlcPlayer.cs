@@ -375,8 +375,11 @@ namespace xZune.Vlc.Wpf
 
         private void SetPosition(float pos, bool setVlcPosition)
         {
-            this.setVlcPosition = setVlcPosition;
-            Dispatcher.Invoke(() => SetValue(PositionProperty, pos));
+            if (!Dispatcher.HasShutdownStarted)
+            {
+                this.setVlcPosition = setVlcPosition;
+                Dispatcher.Invoke(() => SetValue(PositionProperty, pos));
+            }
         }
 
         /// <summary>
@@ -429,8 +432,11 @@ namespace xZune.Vlc.Wpf
 
         private void SetTime(TimeSpan time, bool setVlcTime)
         {
-            this.setVlcTime = setVlcTime;
-            Dispatcher.Invoke(() => SetValue(TimeProperty, time));
+            if (!Dispatcher.HasShutdownStarted)
+            {
+                this.setVlcTime = setVlcTime;
+                Dispatcher.Invoke(() => SetValue(TimeProperty, time));
+            }
         }
 
         /// <summary>

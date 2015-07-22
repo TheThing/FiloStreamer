@@ -11,13 +11,13 @@ namespace FiloStreamer.Decklink
     {
         public static List<DecklinkDevice> Devices;
 
-        public static async Task Init()
+        public static void Init()
         {
             Console.WriteLine("Creating list of devices.");
             Devices = new List<DecklinkDevice>();
         }
 
-        public static async Task LoadDevices()
+        public static void LoadDevices()
         {
             Console.WriteLine("Running FFmpeg");
             var ffmpeg = new FFmpegProcess();
@@ -25,7 +25,8 @@ namespace FiloStreamer.Decklink
             ffmpeg.OutputDataReceived += Ffmpeg_ProcessDeviceLine;
 
             Console.WriteLine("");
-            await ffmpeg.RunAsync("-f decklink -list_devices 1 -i dummy");
+            ffmpeg.Run("-f decklink -list_devices 1 -i dummy");
+            ffmpeg.WaitForExit();
             Console.WriteLine("");
 
             for (int i = 0; i < Devices.Count; i++)
@@ -34,11 +35,12 @@ namespace FiloStreamer.Decklink
 
         private static void Ffmpeg_ProcessDeviceLine(object sender, System.Diagnostics.DataReceivedEventArgs b)
         {
+            string test = b.Data;
             if (b.Data.Length > 0 && b.Data[0] == '[' && b.Data.IndexOf(']') > 1 && b.Data.IndexOf('\'') > b.Data.IndexOf(']'))
                 Devices.Add(new DecklinkDevice { Name = b.Data.Substring(b.Data.IndexOf('\'') + 1, b.Data.LastIndexOf('\'') - b.Data.IndexOf('\'') - 1) });
         }
 
-        public static async Task LoadDeviceModes()
+        public static void LoadDeviceModes()
         {
             for (int i = 0; i < Devices.Count; i++)
             {
@@ -48,7 +50,8 @@ namespace FiloStreamer.Decklink
                 ffmpeg.OutputDataReceived += (a, b) => { Ffmpeg_ProcessDeviceModeLine(Devices[i], b.Data); };
 
                 Console.WriteLine("");
-                await ffmpeg.RunAsync(string.Format("-f decklink -list_formats 1 -i \"{0}\"", Devices[i].Name));
+                ffmpeg.Run(string.Format("-f decklink -list_formats 1 -i \"{0}\"", Devices[i].Name));
+                ffmpeg.WaitForExit();
                 Console.WriteLine("");
             }
 

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FiloStreamer.Controls
+namespace FiloStreamer.XamlControls
 {
     /// <summary>
     /// Interaction logic for Loading.xaml

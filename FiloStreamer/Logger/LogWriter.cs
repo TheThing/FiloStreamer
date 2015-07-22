@@ -34,6 +34,16 @@ namespace FiloStreamer.Logger
             Check();
         }
 
+        public string LastLine
+        {
+            get
+            {
+                if (_list.Count > 0)
+                    return _list[_list.Count - 1];
+                return "";
+            }
+        }
+
         private async void Check()
         {
             await Task.Run(() =>
@@ -45,7 +55,19 @@ namespace FiloStreamer.Logger
                     {
                         _dispatcher.Invoke(() =>
                         {
-                            _list.Add(_buffer.Remove(index).Replace("\r", ""));
+                            string line = _buffer.Remove(index).Replace("\r", "");
+                            var beginning = line.Substring(0, line.IndexOf('=') + 1);
+                            if (beginning.EndsWith("frame="))
+                            {
+                                if (!string.IsNullOrEmpty(beginning) && _list.Count > 0 && _list[_list.Count - 1].StartsWith(beginning))
+                                    _list[_list.Count - 1] = line;
+                                else if (!string.IsNullOrEmpty(beginning) && _list.Count > 1 && _list[_list.Count - 2].StartsWith(beginning))
+                                    _list[_list.Count - 2] = line;
+                                else
+                                    _list.Add(line);
+                            }
+                            else
+                                _list.Add(line);
                             //if (_list.Count > 50)
                             //    _list.RemoveAt(0);
                         });

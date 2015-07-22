@@ -60,11 +60,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Controls\Loading.xaml">
+    <Page Include="LogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Loader.xaml">
+    <Page Include="XamlControls\LogScrollViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -72,15 +72,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="XamlControls\SettingsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XamlControls\Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Loader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\Loading.xaml.cs">
+    <Compile Include="Encoder\BasicEncoder.cs" />
+    <Compile Include="LogWindow.xaml.cs">
+      <DependentUpon>LogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recorder\LocalRecorder.cs" />
+    <Compile Include="XamlControls\LogScrollViewer.xaml.cs">
+      <DependentUpon>LogScrollViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XamlControls\SettingsPanel.xaml.cs">
+      <DependentUpon>SettingsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Streamer\LocalStreamer.cs" />
+    <Compile Include="XamlControls\Loading.xaml.cs">
       <DependentUpon>Loading.xaml</DependentUpon>
     </Compile>
     <Compile Include="Decklink\DecklinkDeviceMode.cs" />
-    <Compile Include="Helpers\Converters.cs" />
+    <Compile Include="XamlHelpers\ButtonState.cs" />
+    <Compile Include="XamlHelpers\MultiConverters.cs" />
+    <Compile Include="XamlHelpers\ValueConverters.cs" />
     <Compile Include="Decklink\Manager.cs" />
     <Compile Include="Decklink\DecklinkDevice.cs" />
     <Compile Include="FFmpeg\FFmpegProcess.cs" />
@@ -88,10 +117,6 @@
       <DependentUpon>Loader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Logger\LogWriter.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -128,6 +153,11 @@
     <Content Include="ffmpeg.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Developer-icon.png" />
+    <Resource Include="Resources\cog-icon.png" />
+    <Resource Include="Resources\Music-Library-icon.png" />
+    <Resource Include="Resources\movie-icon.png" />
+    <Resource Include="Resources\web-icon.png" />
     <Content Include="vlclib\libvlc.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
